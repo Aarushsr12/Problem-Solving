@@ -3,7 +3,7 @@ public:
     vector<int> xorQueries(vector<int>& arr, vector<vector<int>>& queries) {
         //pre-fix sum
         vector<int> ans;
-        vector<int> prefix(arr.size()+1110);
+        vector<int> prefix(arr.size()+1);
         for(int i=0; i<arr.size(); ++i){
             prefix[i+1] = prefix[i] ^ arr[i];
         } 
