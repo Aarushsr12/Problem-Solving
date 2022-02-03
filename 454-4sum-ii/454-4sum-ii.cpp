@@ -10,6 +10,7 @@ public:
                 mp[sum1]++;
             }
         }   
+        //O(n^2)
         
         //in first two arrays we look for sum1 total value & then will search for it in next 2arrays
         int sum2=0;
@@ -22,6 +23,7 @@ public:
                 }
             }
         }
+        //O(n^2)
         return count;
     }
 };
