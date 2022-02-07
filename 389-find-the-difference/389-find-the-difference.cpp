@@ -1,14 +1,20 @@
 class Solution {
 public:
     char findTheDifference(string s, string t) {
-        char x=0;
+       map<char,int>m;
         for(int i=0; i<s.size(); ++i){
-            x = x ^ s[i];
+            m[s[i]]++;
         }
-        char y=0;
+        char ans;
         for(int i=0; i<t.size(); ++i){
-            y = y ^ t[i];
+            if(m[t[i]] > 0){
+                //decrease the frequency
+                m[t[i]]--;
+            }
+            else{
+                ans=t[i];
+            }
         }
-        return x ^ y;
+        return ans;
     }
 };
