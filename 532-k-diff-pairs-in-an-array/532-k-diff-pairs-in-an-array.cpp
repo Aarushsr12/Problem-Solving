@@ -1,17 +1,18 @@
 class Solution {
 public:
     int findPairs(vector<int>& nums, int k) {
-        set<pair<int,int>>s;
-        unordered_map<int,int>m;
-        for(int i=0; i<nums.size();++i){
-            if(m.find(nums[i] + k) != m.end()){
-                s.insert(make_pair(nums[i],nums[i] + k));
-            }
-            if(m.find(nums[i] - k) != m.end()){
-                s.insert(make_pair(nums[i] - k,nums[i]));
-            }
-            m[nums[i]]++;
+        //if k == 0 ,find the i having it.second > 1;
+        //if k>0 ,find the i having i + k;
+        unordered_map<int,int> m;
+        for(auto it :nums){
+            m[it]++;
         }
-        return s.size();
+        int count=0;
+        for(auto it : m){
+            if((k==0 && it.second>1) || (k>0 && m.find(it.first + k) != m.end())){
+                count++;
+            }
+        }
+        return count;
     }
 };
