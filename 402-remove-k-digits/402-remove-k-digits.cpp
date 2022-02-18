@@ -1,7 +1,6 @@
 class Solution {
 public:
     string removeKdigits(string num, int k) {
-       
         stack<char> s;
         for(int i=0; i<num.size(); ++i){
            while(s.empty() == false && s.top()>num[i] && k>0){
@@ -21,8 +20,8 @@ public:
         }
         //cases to handle
         // 1. If it is in ascending order
-        // 2. If we want to remove all elemnts
-        while(s.empty() == false && k!=0){
+        // 2. If we want to remove all elements[3rd case]
+        while(s.empty() == false && k>0){
             s.pop();
             k--;
         }
