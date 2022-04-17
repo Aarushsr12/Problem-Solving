@@ -5,13 +5,12 @@ public:
         for(int i=0; i<tasks.size(); ++i){
             m[tasks[i]]++;
         }
-        for(auto it : m){
-            if(it.second < 2){
-                return -1;
-            }
-        }
+    
         int count=0;
         for(auto it : m){
+            if(it.second == 1){
+                return -1;
+            }
             if(it.second == 3 || it.second == 2){
                 count += 1;
             }
