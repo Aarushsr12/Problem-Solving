@@ -14,7 +14,7 @@ public:
             return sum;
         }
         int ans = 0;
-        int score = 0;
+        int score = INT_MIN;
         for(int i=0; i<=k; ++i){
             int j = i + (n - k - 1);
             if(i == 0){
