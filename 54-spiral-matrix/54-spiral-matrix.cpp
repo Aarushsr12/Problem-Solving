@@ -4,41 +4,41 @@ public:
     //right
     void right(int &i,int &j,vector<vector<int>> &matrix){
         for( ; j<matrix[0].size(); ++j){
-            if(matrix[i][j] == -101){
+            if(matrix[i][j] == INT_MAX){
                 return;
             }
             ans.push_back(matrix[i][j]);
-            matrix[i][j] = -101;
+            matrix[i][j] = INT_MAX;
         }     
     }
     //down
     void down(int &i,int &j,vector<vector<int>> &matrix){
         for( ;i<matrix.size(); ++i){
-            if(matrix[i][j] == -101){
+            if(matrix[i][j] == INT_MAX){
                 return;
             }
             ans.push_back(matrix[i][j]);
-            matrix[i][j] = -101;
+            matrix[i][j] = INT_MAX;
         }    
     }
     //left
     void left(int &i,int &j,vector<vector<int>> &matrix){
         for( ;j>=0; j--){
-           if(matrix[i][j] == -101){
+           if(matrix[i][j] == INT_MAX){
                return;
            } 
             ans.push_back(matrix[i][j]);
-            matrix[i][j] = -101;
+            matrix[i][j] = INT_MAX;
         }
     }
     //up
     void up(int &i,int &j,vector<vector<int>> &matrix){
         for( ;i>=0; i--){
-            if(matrix[i][j] == -101){
+            if(matrix[i][j] == INT_MAX){
                 return;
             }
             ans.push_back(matrix[i][j]);
-            matrix[i][j] = -101;
+            matrix[i][j] = INT_MAX;
         }
     }
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
