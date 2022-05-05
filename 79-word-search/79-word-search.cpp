@@ -12,9 +12,10 @@ public:
             if(index == word.size()){
                 return true;
             }
-            char temp = board[i][j];
+
+            char s = board[i][j];
             board[i][j] ='#';
-            
+
             if(search(i-1,j,n,m,board,word,index)){
                 return true;
             }
@@ -27,7 +28,9 @@ public:
             if(search(i,j+1,n,m,board,word,index)){
                 return true;
             }
-            board[i][j] = temp;
+            //if in all directions ans is false;
+            board[i][j] = s;
+              
         }
         return false;
     }
