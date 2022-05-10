@@ -1,19 +1,30 @@
 class Solution {
 public:
-    bool Palindrome(string s,int i,int j,int count){
-        if(count > 1){
-            return false;
-        }
+    bool isPalindrome(string s,int i,int j){
         while(i<j){
-            if(s[i] != s[j]){
-                return (Palindrome(s, i+1, j, count+1) || Palindrome(s, i, j-1, count+1));
+            if(s[i] == s[j]){
+                i++;
+                j--;
             }
-            i++;
-            j--;
+            else{
+                return false;
+            }
         }
         return true;
     }
     bool validPalindrome(string s) {
-        return Palindrome(s, 0 , s.size()-1,0);
+        int n = s.size();
+        int i=0;
+        int j=n-1;
+        while(i<j){
+            if(s[i] != s[j]){
+                return isPalindrome(s, i+1, j) || isPalindrome(s, i, j-1);
+            }
+            else{
+                i++;
+                j--;
+            }
+        }
+       return true; 
     }
 };
