@@ -19,6 +19,7 @@ public:
                         ans += m[x];
                     }  
                     num = num % x; 
+                    break;
                 }
            
             }       
