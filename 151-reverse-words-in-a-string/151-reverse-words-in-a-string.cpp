@@ -2,23 +2,27 @@ class Solution {
 public:
     string reverseWords(string s) {
         int n = s.size();
+        stack<string>st;
         int i=0;
         string ans="";
-        while(i < n){
-            string temp = "";
+        for(int i=0; i<n; ++i){
+            string str="";
             if(s[i] == ' '){
-                //ignore spaces
-                i++;
+                continue;
             }
             while(i<n && s[i] != ' '){
-                temp += s[i];
+                str += s[i];
                 i++;
             }
-            if(temp.empty() == false){
-                ans = temp + " " + ans;
-            } 
+            st.push(str);          
         }
-        ans.pop_back();
+        while(!st.empty()){
+            ans += st.top();
+            st.pop();
+            if(!st.empty()){
+                ans+=" ";
+            }
+        }
         return ans;
     }
 };
