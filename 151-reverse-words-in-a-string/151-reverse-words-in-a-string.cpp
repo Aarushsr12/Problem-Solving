@@ -7,10 +7,11 @@ public:
         while(i < n){
             string temp = "";
             if(s[i] == ' '){
+                //ignore spaces
                 i++;
             }
             while(i<n && s[i] != ' '){
-                temp.push_back(s[i]);
+                temp += s[i];
                 i++;
             }
             if(temp.empty() == false){
