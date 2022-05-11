@@ -15,11 +15,10 @@ public:
         while(num){
             for(int x : v){
                 if(num/x){
-                    for(int i=1; i<=floor(num/x); ++i){
+                    for(int i=1; i<=num/x; ++i){
                         ans += m[x];
                     }  
                     num = num % x; 
-                    break;
                 }
            
             }       
