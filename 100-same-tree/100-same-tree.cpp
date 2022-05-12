@@ -19,12 +19,12 @@ public:
         if(p == NULL || q == NULL){
             return false;
         }
+        //hypothesis
         if(p->val != q->val){
             return false;
         }
-        if(isSameTree(p->left,q->left) && isSameTree(p->right,q->right)){
-            return true;
-        }
-        return false;
+        bool ans = (isSameTree(p->left,q->left) && isSameTree(p->right,q->right));
+        return ans;
+        
     }
 };
