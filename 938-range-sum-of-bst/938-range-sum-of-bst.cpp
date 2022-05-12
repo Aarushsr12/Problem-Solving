@@ -11,25 +11,21 @@
  */
 class Solution {
 public:
+    int sum = 0;
+    
     int rangeSumBST(TreeNode* root, int low, int high) {
-        int cal = 0;
-        queue<TreeNode *> q;
-        q.push(root);
-        while(!q.empty()){
-            TreeNode * front = q.front();
-            q.pop();
-            if(front != NULL){
-                 if(front->val >= low && front->val <= high){
-                cal += front->val;
-            }
-            if(front->val > low){
-                q.push(front->left);
-            }
-            if(front->val <= high){
-                q.push(front->right);
-            }
-            }
+        if(root == NULL){
+            return 0;
+        }    
+        if(root->val >= low && root->val <= high){
+            sum += root->val;
         }
-        return cal;
+        if(root->val > low){
+            rangeSumBST(root->left, low, high);
+        }
+        if(root->val <= high){
+            rangeSumBST(root->right, low, high);
+        }
+        return sum;
     }
 };
