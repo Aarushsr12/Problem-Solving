@@ -15,14 +15,17 @@ public:
         if(root == NULL){
             return 0;
         }
-        int leftans = minDepth(root->left);
-        int rightans = minDepth(root->right);
-        
-        if(leftans == 0 || rightans == 0){
-            return 1 + max(leftans,rightans);
+        if(root->left != NULL && root->right != NULL){
+            int left = minDepth(root->left);
+            int right = minDepth(root->right);
+            
+            return 1 + min(left,right);
         }
-        return 1 + min(leftans,rightans);
-        
-        
+        else if(root->left == NULL){
+            return 1 + minDepth(root->right);
+        }
+        else{
+            return 1 + minDepth(root->left);
+        }
     }
 };
