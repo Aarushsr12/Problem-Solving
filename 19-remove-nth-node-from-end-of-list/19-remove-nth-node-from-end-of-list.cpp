@@ -27,9 +27,10 @@ public:
         if(len == n){
             return temp->next;
         }
-         int skip = len - n;
-        for(int i=1; i<skip; ++i){
-            temp =temp->next;
+        int skip = 1;
+        while(temp != NULL && skip <len-n){
+            skip++;
+            temp = temp->next;
         }
         ListNode *a = temp->next;
         temp->next = a->next;
