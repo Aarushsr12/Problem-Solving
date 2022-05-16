@@ -32,8 +32,10 @@ public:
             skip++;
             temp = temp->next;
         }
+        cout << temp->val<<endl;
         ListNode *a = temp->next;
-        temp->next = a->next;
+        ListNode *b = a->next;
+        temp->next = b;
         delete a;
         return head;
     }
