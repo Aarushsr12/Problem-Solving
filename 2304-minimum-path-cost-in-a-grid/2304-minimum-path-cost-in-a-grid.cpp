@@ -18,10 +18,6 @@ public:
                 dp[i][j] = ans;
              }
         }
-        int p =INT_MAX;
-        for(int i=0; i<m; ++i){
-            p = min(p,dp[n-1][i]);
-        }
-        return p;   
+        return *min_element(dp[n-1].begin(),dp[n-1].end());
     }
 };
