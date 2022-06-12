@@ -1,27 +1,27 @@
 class Solution {
 public:
-    int helper(vector<vector<int>>& grid,int i,int j,int n,int m,vector<vector<int>>& moveCost,vector<vector<int>> &dp){
-        //base case
-        if(i == n-1){
-            return grid[n-1][j];
-        }
-        if(dp[i][j] != -1){
-            return dp[i][j];
-        }
-        int ans = INT_MAX;
-        for(int k=0; k<m; ++k){
-            ans = min(ans,grid[i][j] + moveCost[grid[i][j]][k] + helper(grid,i+1,k,n,m,moveCost,dp));
-        }
-        return dp[i][j] = ans;
-    }
-    int minPathCost(vector<vector<int>>& grid, vector<vector<int>>& moveCost) {
+    int minPathCost(vector<vector<int>>& grid, vector<vector<int>>& mC) {
         int n = grid.size();
         int m = grid[0].size();
-        int ans = INT_MAX;
-        vector<vector<int>> dp(n,vector<int>(m,-1));
-        for(int i=0; i<m; ++i){
-            ans = min(ans,helper(grid,0,i,n,m,moveCost,dp));   
+        
+        vector<vector<int>>dp(n,vector<int>(m,0));
+        for(int j=0; j<m; ++j){
+            dp[0][j] = grid[0][j];
+        } 
+        
+        for(int i=1; i<n; ++i){
+            for(int j=0; j<m; ++j){
+                int ans = INT_MAX;
+                for(int k=0; k<mC[grid[i][j]].size(); ++k){
+                    ans = min(ans, grid[i][j] + mC[grid[i-1][k]][j] + dp[i-1][k]);
+                }
+                dp[i][j] = ans;
+             }
         }
-        return ans;
+        int p =1e9;
+        for(int i=0; i<m; ++i){
+            p = min(p,dp[n-1][i]);
+        }
+        return p;   
     }
 };
