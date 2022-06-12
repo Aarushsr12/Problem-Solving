@@ -5,19 +5,18 @@ public:
         int m = grid[0].size();
         
         vector<vector<int>>dp(n,vector<int>(m,0));
-        for(int j=0; j<m; ++j){
-            dp[0][j] = grid[0][j];
-        } 
-        
-        for(int i=1; i<n; ++i){
+        for(int i=0; i<m; ++i){
+            dp[n-1][i] = grid[n-1][i];
+        }
+        for(int i=n-2; i>=0; i--){
             for(int j=0; j<m; ++j){
                 int ans = INT_MAX;
-                for(int k=0; k<mC[grid[i][j]].size(); ++k){
-                    ans = min(ans, grid[i][j] + mC[grid[i-1][k]][j] + dp[i-1][k]);
+                for(int k=0; k<m; ++k){
+                    ans = min(ans, dp[i+1][k] + mC[grid[i][j]][k]);
                 }
-                dp[i][j] = ans;
-             }
+                dp[i][j] = grid[i][j] + ans;
+            }
         }
-        return *min_element(dp[n-1].begin(),dp[n-1].end());
+        return *min_element(dp[0].begin(),dp[0].end());
     }
 };
