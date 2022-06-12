@@ -18,7 +18,7 @@ public:
                 dp[i][j] = ans;
              }
         }
-        int p =1e9;
+        int p =INT_MAX;
         for(int i=0; i<m; ++i){
             p = min(p,dp[n-1][i]);
         }
