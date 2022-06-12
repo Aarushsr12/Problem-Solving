@@ -1,7 +1,7 @@
 class Solution {
 public:
     double taxCal(int num,int per){
-        double p = double(per/100.0);
+        double p = per/100.0;
         return num * p;
     }
     double calculateTax(vector<vector<int>>& brackets, int income) {
