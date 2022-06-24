@@ -1,34 +1,31 @@
 class Solution {
 public:
-    int helper(vector<int> &coins,int index,int amount,int n,vector<vector<int>> &dp){
-        //base case 
-        if(index == 0){
-            if(amount % coins[index] == 0){
-                return amount/coins[index];
+    int coinChange(vector<int>& coins, int amount) {
+        int n = coins.size();
+        vector<vector<int>> dp(n,vector<int>(amount+1, 0));
+        for(int T=0; T<=amount; ++T){
+            if(T % coins[0] == 0){
+                dp[0][T] = T / coins[0];
             }
             else{
-                return 1e9;
+                dp[0][T] = 1e9;
             }
         }
-        if(dp[index][amount] != -1){
-            return dp[index][amount];
+        for(int i=1; i<n; ++i){
+            for(int j=0; j<=amount; ++j){
+                int take = 1e9;
+                if(coins[i] <= j){
+                    take = 1 + dp[i][j - coins[i]];
+                }
+                                
+                int notake = dp[i-1][j];
+                
+                dp[i][j] = min(take, notake);
+            }
         }
-        int take = 1e9;
-        if(coins[index] <= amount){
-            take = 1 + helper(coins,index, amount - coins[index],n,dp);
-        }
-        
-        int notake = helper(coins,index-1, amount,n,dp);
-        return dp[index][amount] = min(take, notake);
-    }
-    int coinChange(vector<int>& coins, int amount) {
-        //base case
-        int n = coins.size();
-        vector<vector<int>>dp(n, vector<int>(amount+1, -1));
-        int res =  helper(coins,n-1,amount,n,dp);
-        if(res == 1e9){
+        if(dp[n-1][amount] == 1e9){
             return -1;
-        }
-        return res;
+        } 
+        return dp[n-1][amount];
     }
 };
