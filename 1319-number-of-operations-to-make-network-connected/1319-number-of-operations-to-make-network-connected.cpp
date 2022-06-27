@@ -1,29 +1,33 @@
 class Solution {
 public:
-    void dfs(vector<int> adj[],vector<bool> &visited, int src){
-        visited[src] = true;
-        for(int it : adj[src]){
-            if(!visited[it]){
-                dfs(adj,visited,it);
+    void dfs(int src,vector<int> adj[],vector<bool> &vis){
+        vis[src] = true;
+        for(auto it : adj[src]){
+            if(!vis[it]){
+                dfs(it,adj,vis);
             }
         }
     }
     int makeConnected(int n, vector<vector<int>>& connections) {
+        //not enough cables
         if(connections.size() < n-1){
             return -1;
         }
+        
         vector<int> adj[n];
         for(int i=0; i<connections.size(); ++i){
-            int u = connections[i][0];
-            int v = connections[i][1];
-            adj[u].push_back(v);
-            adj[v].push_back(u);
+            int x = connections[i][0];
+            int y = connections[i][1];
+            
+            adj[x].push_back(y);
+            adj[y].push_back(x);
         }
-        vector<bool> visited(n,false);
-        int count =0;
+        vector<bool> vis(n, false);
+        //count the no of connected components
+        int count = 0;
         for(int i=0; i<n; ++i){
-            if(!visited[i]){
-                dfs(adj,visited,i);
+            if(!vis[i]){
+                dfs(i,adj,vis);
                 count++;
             }
         }
