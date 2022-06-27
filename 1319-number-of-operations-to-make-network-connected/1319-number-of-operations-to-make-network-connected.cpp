@@ -2,7 +2,7 @@ class Solution {
 public:
     void dfs(int src,vector<int> adj[],vector<bool> &vis){
         vis[src] = true;
-        for(auto it : adj[src]){
+        for(int it : adj[src]){
             if(!vis[it]){
                 dfs(it,adj,vis);
             }
