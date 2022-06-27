@@ -27,11 +27,11 @@ public:
                 }
             }
         }
-        s="";
+        string ans ="";
         while(!st.empty()){
-            s = st.top() + s;
+            ans = st.top() + ans;
             st.pop();
         }
-        return s;
+        return ans;
     }
 };
