@@ -1,21 +1,21 @@
 class Solution {
 public:
-    bool flag = false;
     
-    void PathCheck(vector<vector<int>>&adj,int n,vector<int>&vis,int source,int destination){
-        
-        if(vis[source]){
-            return;
+    bool PathCheck(vector<vector<int>>&adj,int n,vector<int>&vis,int source,int destination){
+      //main conditon
+        if(source == destination){
+            return true;
         }
-        
+        if(vis[source] == true){
+            return false;
+        }
         vis[source] = 1;
         for(auto it : adj[source]){
-                if(source == destination){
-                flag = true;
-                return;
-             }
-            PathCheck(adj,n,vis,it,destination);
+            if(PathCheck(adj,n,vis,it,destination)){
+                return true;
+            }
         }
+        return false;
     }
     bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
         
@@ -34,8 +34,7 @@ public:
         
         vector<int> vis(n+1,0);
         
-        PathCheck(adj,n,vis,source,destination);
-        return flag;
+       return PathCheck(adj,n,vis,source,destination);
         
     }
 };
