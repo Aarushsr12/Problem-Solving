@@ -1,28 +1,29 @@
 class Solution {
 public:
-    
-    bool PathCheck(vector<vector<int>>&adj,int n,vector<int>&vis,int source,int destination){
-      //main conditon
+    bool PathCheck(vector<vector<int>> &adj,vector<int>&vis,int n,int source,int destination){
+        //main condition
         if(source == destination){
             return true;
         }
-        if(vis[source] == true){
-            return false;
-        }
-        vis[source] = 1;
-        for(auto it : adj[source]){
-            if(PathCheck(adj,n,vis,it,destination)){
+        queue<int> q;
+        q.push(source);
+        while(!q.empty()){
+            int node = q.front();
+            q.pop();
+            vis[node] = 1;
+            if(node == destination){
                 return true;
             }
+            for(auto it : adj[node]){
+                if(!vis[it]){
+                    q.push(it);
+                }
+            }
         }
-        return false;
+        return false;   
     }
     bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
-        
-        if(source == destination){
-            return true;
-        }
-        
+        //BFS Traversal
         vector<vector<int>> adj(n+1);
         for(int i=0; i<edges.size(); ++i){
             int u = edges[i][0];
@@ -30,11 +31,9 @@ public:
             
             adj[u].push_back(v);
             adj[v].push_back(u);
+            
         }
-        
-        vector<int> vis(n+1,0);
-        
-       return PathCheck(adj,n,vis,source,destination);
-        
+        vector<int> vis(n+1);
+        return PathCheck(adj,vis,n,source,destination);
     }
 };
