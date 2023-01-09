@@ -7,7 +7,7 @@ public:
          return 1;
      }   
      for(int i=0; i<n; ++i){
-              unordered_map<double,int> m;
+            unordered_map<double,int> m;
           for(int j=0; j<n; ++j){
               if(i == j){
                   continue;
