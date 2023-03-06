@@ -1,36 +1,21 @@
 class Solution {
 public:
-    int findKthPositive(vector<int>& arr, int k) {
-         int n = arr.size();
-        map<int,int> m;
-        vector<int> v;
-        int ans  = 0;
-        for(int i=0; i<arr.size(); ++i){
-            m[arr[i]]++;
-        }
-        for(int i=1; i<= arr[n-1]; ++i){
-            if(m[i] != 1){
-                v.push_back(i);
-            }
-        }
-        if(v.size() < k){
-            int rem = k - v.size();
-             int x = arr[n-1];
-            while(rem--){
-              x++;
-            }
-            ans = x;
-        }
-        else{
-            for(int i=0; i<v.size(); ++i){
-                if(i+1 == k){
-                    ans =  v[i];
-                }
-            }
-        }
-        return ans;
+    int findKthPositive(vector<int>& nums, int k) {
+        int n = nums.size();
+        int l = 0, r = n-1;
+        int mid = -1;
         
-        
+        while( l<= r){
+          mid = l + (r - l)/2;
+          int rem_elem = nums[mid] - (mid + 1);
+           if(rem_elem < k){
+               l = mid + 1;
+           } 
+           else{
+               r = mid - 1;
+           }
+        }
+        return l + k;
         
     }
 };
