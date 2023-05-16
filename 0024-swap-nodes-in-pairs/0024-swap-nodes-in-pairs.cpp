@@ -11,13 +11,22 @@
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
-        //base case
-        if(head == NULL || head->next == NULL){
-            return head;
+        //iterative
+        ListNode *dummy = new ListNode(-1);
+        ListNode *prev = dummy;
+        ListNode *curr = head;
+        dummy->next = head;
+        while(curr != NULL && curr->next != NULL){
+            prev->next = curr->next;
+            curr->next = curr->next->next;
+            
+            // now 2 - > 1
+            //prev->next = 2
+            prev->next->next = curr;
+            //now update the curr & prev values
+            curr = curr->next;
+            prev = prev->next->next;
         }
-        ListNode *temp = head->next;
-        head->next = swapPairs(head->next->next);
-        temp->next = head;
-        return temp;
+        return dummy->next;
     }
 };
