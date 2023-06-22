@@ -3,14 +3,14 @@ public:
     long long calculate(vector<int>&piles,int h,int k){
         long long total = 0;
         for(int i=0; i<piles.size(); ++i){
-            total += ceil( (double)piles[i] / (double)k ); 
+            total += ceil( piles[i] / (double)k ); 
         }
         return total;
     }
     
     int minEatingSpeed(vector<int>& piles, int h) {
          int n = piles.size();
-         //pointer reflect the k speed
+         //L & R reflect the k speed
         int l = 1;
         int r = *max_element(piles.begin(),piles.end());
         
