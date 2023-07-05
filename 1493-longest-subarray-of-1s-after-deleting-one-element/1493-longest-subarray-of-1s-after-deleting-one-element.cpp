@@ -1,34 +1,17 @@
 class Solution {
 public:
-    int findMax(vector<int>&nums,int index){
-         int curr = 0;
-         int maxLength = 0; 
-        for(int i=0; i<nums.size(); ++i){
-             if(i == index){
-                 continue;
-             }
-             if(nums[i] == 1){
-                 curr++;
-                 maxLength = max(maxLength,curr);
-             }
-             else{
-                 curr = 0;
-             }
-         }
-        return maxLength;
-    }
     int longestSubarray(vector<int>& nums) {
-         int n = nums.size();
-         int result = 0;
-         int zero = 0;
-        for(int i=0; i<n; ++i){
-            if(nums[i] == 0){
-                zero++;
-                result = max(result,findMax(nums,i));
+        int i=0;
+        int j=0;
+        int result = 0;
+        int lastindex = -1;
+        while(j < nums.size()){
+            if(nums[j] == 0){
+                i = lastindex + 1;
+                lastindex = j;
             }
-        }
-        if(zero == 0){
-            return n - 1;
+            result = max(result,j-i);
+            j++;
         }
         return result;
     }
