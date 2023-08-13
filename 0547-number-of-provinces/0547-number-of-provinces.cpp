@@ -1,10 +1,10 @@
 class Solution {
 public:
-    void dfs(int node,vector<int> adj[], vector<int> &vis){
+    void dfs(int node,vector<int>&vis,vector<int> adj[],int n){
         vis[node] = 1;
         for(auto it : adj[node]){
-            if(!vis[it]){
-                dfs(it,adj,vis);
+            if(vis[it] == 0){
+                dfs(it,vis,adj,n);
             }
         }
     }
@@ -19,16 +19,14 @@ public:
                 }
             }
         }
-        vector<int>vis(n,0);
-        int province = 0;
+        int count = 0;
+        vector<int> vis(n,0);
         for(int i=0; i<n; ++i){
-            if(!vis[i]){
-                province++;
-                dfs(i,adj,vis);
-            }
+            if(vis[i] == 0){
+                dfs(i,vis,adj,n);
+                count++;
+            } 
         }
-        
-        return province;
-        
+        return count;
     }
 };
