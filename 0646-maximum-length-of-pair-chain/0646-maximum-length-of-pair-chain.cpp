@@ -20,7 +20,7 @@ public:
     int findLongestChain(vector<vector<int>>& pairs) {
         sort(pairs.begin(),pairs.end(),compare);
         int n = pairs.size();
-        vector<vector<int>>dp(n,vector<int>(n+1,-1));
+        vector<vector<int>>dp(n,vector<int>(n,-1));
         return longestCount(0,-1,n,pairs,dp);
     }
 };
